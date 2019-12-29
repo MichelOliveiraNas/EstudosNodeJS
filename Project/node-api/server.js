@@ -1,13 +1,16 @@
 const express = require('express'); //IMPORTANDO O EXPRESS.
+const mongoose = require('mongoose');
 
-const app = express(); // DEFININDO A CONSTANTE 'APP' COMO EXPRESS.
+const app = express(); // DEFININDO A CONSTANTE 'APP' COMO UMA FUNÇÃO EXPRESS.
 
+//INICIANDO O DB
+mongoose.connect('mongodb://192.168.99.100:27017/nodeapi', { useNewUrlParser: true });
 
 // O GET É ACIONADO QUANDO O USUÁRIO ACESSAR A ROTA PASSADA NO PRIMEIRO PARÂMETRO.
 // O REQ SIMBOLIZA A REQUISIÇÃO QUE ESTÁ SENDO FEITA PARA O SERVIDOR. ELE CONTERÁ TODOS OS DETALHES E INFORMAÇÕES DESSA REQUISIÇÃO COMO PARÂMETROS, CORPO DA REQUISIÇÃO, USUÁRIO QUE FEZ A REQUISIÇÃO, ETC.
 // O RES SIMBOLIZA A RESPOSTA QUE SERÁ DADA PARA A REQUISIÇÃO.
-app.get('/', (req, res) => { 
+app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.listen(3001);
+app.listen(3001); //DEFININDO A PORTA COMO 3001 DO NAVEGADOR.
