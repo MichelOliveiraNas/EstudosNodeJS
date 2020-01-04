@@ -4,7 +4,8 @@ const Product = mongoose.model('Product');
 
 module.exports = {
     async index(req, res) {
-        const products = await Product.find();
+        const { page = 1} = req.query; //UTILIZANDO DESESTRUTURAÇÃO PARA BUSCAR O PARÂMETRO "PAGE" DA REQUISIÇÃO GET.
+        const products = await Product.paginate({/*CONDIÇÕES/FILTROS*/},{ page, limit: 10 } ); //page = PÁGINA ATUAL. limit = LIMITE DE REGISTROS EXIBIDOS EM CADA PÁGINA.
 
         return res.json(products);
     },
